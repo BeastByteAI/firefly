@@ -1,10 +1,7 @@
-<h1 align="center">
-  <br>
- <img src="https://gist.githubusercontent.com/OKUA1/55e2fb9dd55673ec05281e0247de6202/raw/d7d7ffd7f6b51ba3b314717ea133d31d26c943d2/firefly.svg" alt="FireFly" width="250" height = "250">
-  <br>
-  FireFly
-  <br>
-</h1>
+<div align="center">
+  <img alt="logo" src="https://gist.githubusercontent.com/OKUA1/55e2fb9dd55673ec05281e0247de6202/raw/d7d7ffd7f6b51ba3b314717ea133d31d26c943d2/firefly.svg" height = "250">
+</div>
+
 
 <h4 align="center">A DIY Deep Learning Framework</h4>
 
