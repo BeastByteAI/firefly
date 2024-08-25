@@ -12,7 +12,7 @@ _FireFly_ is an educational project that aims to provide a simple and easy-to-un
 
 ## How does it work? 
 
-You can re-create the framework completely from scratch by following the [tutorials](). The framework is built on top of NumPy and only takes a couple of hours to implement the first version (covered in `1_foundations` tutorial). At this point, it is already possible to train simple MLPs using a high-level API similar to PyTorch.
+You can re-create the framework completely from scratch by following the [tutorials](https://github.com/BeastByteAI/firefly/tree/main/tutorials). The framework is built on top of NumPy and only takes a couple of hours to implement the first version (covered in `1_foundations` tutorial). At this point, it is already possible to train simple MLPs using a high-level API similar to PyTorch.
 
 If you have any questions or need help, feel free to open an issue or reach out to us on [Discord](https://discord.com/invite/YDAbwuWK7V).
 
