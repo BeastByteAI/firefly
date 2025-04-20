@@ -4,4 +4,4 @@ from firefly.nn.module import Module
 
 
 class Linear(Module):
-    pass # TODO
+    pass  # TODO

@@ -10,7 +10,7 @@ class Tanh(DiffOp):
         self.tanh_inp = D.tanh(self.input)
         return self.tanh_inp
 
-    def backward(self, grad: BaseBuffer) -> tuple[BaseBuffer, BaseBuffer]:
+    def backward(self, grad: BaseBuffer) -> tuple[BaseBuffer, ...]:
         inp_squared = D.mul(self.tanh_inp, self.tanh_inp)
         return (
             D.mul(

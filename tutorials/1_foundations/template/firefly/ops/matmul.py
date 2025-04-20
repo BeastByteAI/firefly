@@ -2,10 +2,6 @@ from firefly.ops.base import DiffOp
 import numpy as np
 
 
-import numpy as np
-from firefly.ops.base import DiffOp
-
-
 class MatMul(DiffOp):
     def forward(self, *buffers: np.ndarray, **kwargs) -> np.ndarray:
         assert len(buffers) == 2, "MatMul requires exactly 2 inputs"

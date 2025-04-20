@@ -2,6 +2,7 @@ import math
 import numpy as np
 from firefly.tensor import Tensor
 
+
 def kaiming_uniform(tensor_shape, a=0):
     bound = (
         math.sqrt(3.0)

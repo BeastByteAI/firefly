@@ -12,7 +12,7 @@ class ReduceSum(DiffOp):
         self.keepdims = keepdims
         return np.sum(buffers[0], axis=axis, keepdims=keepdims)
 
-    def backward(self, grad: np.ndarray) -> np.ndarray:
+    def backward(self, grad: np.ndarray) -> tuple[np.ndarray, ...]:
         input_shape = self.buffer.shape
         grad_shape = list(input_shape)
 

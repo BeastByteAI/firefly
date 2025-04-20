@@ -1,11 +1,11 @@
+# type: ignore
 from __future__ import annotations
 from firefly.nn.parameter import Parameter
 
 
 class Module:
-
     _parameters: (
-        dict[str, Parameter | list[Parameter], tuple[Parameter, ...]] | None
+        dict[str, Parameter | list[Parameter] | tuple[Parameter, ...]] | None
     ) = None
     _modules: dict[str, Module | list[Module] | tuple[Module, ...]] | None = None
 
@@ -15,7 +15,10 @@ class Module:
         if self._modules is None:
             object.__setattr__(self, "_modules", {})
 
-    def forward(self, *ars, **kwargs) -> any:
+        assert self._parameters is not None
+        assert self._modules is not None
+
+    def forward(self, *ars, **kwargs):
         raise NotImplementedError("Forward method is not implemented.")
 
     def __call__(self, *args):

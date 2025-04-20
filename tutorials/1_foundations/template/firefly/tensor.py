@@ -6,10 +6,9 @@ from typing import Type
 
 
 class Tensor:
-
     def __init__(
         self,
-        data: np.ndarray,
+        data: np.ndarray | list | tuple | float | int,
         requires_grad=False,
         store_grad_non_leaf=False,
     ):

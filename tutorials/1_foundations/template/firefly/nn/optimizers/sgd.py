@@ -4,4 +4,4 @@ from firefly.tensor import Tensor
 
 
 class SGD(BaseOptimizer):
-    pass # TODO
+    pass  # TODO

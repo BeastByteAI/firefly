@@ -29,13 +29,12 @@ import numpy as np
 
 
 class Tensor:
-
-    parents: tuple[Tensor] | None = None
+    parents: tuple[Tensor, ...] | None = None
     creator: BaseOp | None = None
 
     def __init__(
         self,
-        data: np.ndarray | BaseBuffer,
+        data: np.ndarray | BaseBuffer | float | int | list | tuple,
         requires_grad=False,
         store_grad_non_leaf=False,
     ):
@@ -120,7 +119,7 @@ class Tensor:
     def reduce_sum(self, axis: int | None = None, keepdims: bool = False) -> Tensor:
         return apply_op(ReduceSum, self, axis=axis, keepdims=keepdims)
 
-    def reduce_mean(self, axis: int = None, keepdims: bool = False) -> Tensor:
+    def reduce_mean(self, axis: int | None = None, keepdims: bool = False) -> Tensor:
         return apply_op(ReduceMean, self, axis=axis, keepdims=keepdims)
 
     def shape(self) -> Tensor:
@@ -161,8 +160,8 @@ class Tensor:
 
     def reshape(self, shape: list[int] | tuple[int]) -> Tensor:
         if not isinstance(shape, Tensor):
-            shape = Tensor(np.array(shape)).to(self.backend)
-        return apply_op(Reshape, self, shape)
+            shape_tensor = Tensor(np.array(shape)).to(self.backend)
+        return apply_op(Reshape, self, shape_tensor)
 
     def square(self) -> Tensor:
         return apply_op(Mul, self, self)

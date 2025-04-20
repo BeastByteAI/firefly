@@ -2,6 +2,7 @@ from __future__ import annotations
 import numpy as np
 from enum import Enum
 from abc import ABC, abstractmethod
+from typing import Any
 
 
 # This is not used for now and needed just for keeping the count of prims
@@ -39,6 +40,7 @@ class Primitives(Enum):
 
 
 class BaseBackend(ABC):
+    buffer: type[BaseBuffer]
 
     @staticmethod
     @abstractmethod
@@ -187,12 +189,11 @@ class BaseBackend(ABC):
 
 
 class BaseBuffer(ABC):
-
-    backend: BaseBackend
+    backend: str
     default_device: str
-    native_type: any
+    native_type: Any
 
-    def __init__(self, data: any, device: str = None):
+    def __init__(self, data: Any, device: str | None = None):
         self.device = device or self.default_device
         if isinstance(data, np.ndarray):
             self.data = self.from_numpy(data)
@@ -208,12 +209,13 @@ class BaseBuffer(ABC):
     def is_same_device(self, other: BaseBuffer) -> bool:
         return isinstance(other, type(self)) and other.device == self.device
 
+    @classmethod
     @abstractmethod
-    def from_numpy(data: np.ndarray) -> any:
+    def from_numpy(cls, data: np.ndarray) -> Any:
         pass
 
     @abstractmethod
-    def to_numpy() -> np.ndarray:
+    def to_numpy(self) -> np.ndarray:
         pass
 
     @abstractmethod
@@ -222,4 +224,8 @@ class BaseBuffer(ABC):
 
     @abstractmethod
     def size(self) -> int:
+        pass
+
+    @abstractmethod
+    def data_repr(self) -> str:
         pass

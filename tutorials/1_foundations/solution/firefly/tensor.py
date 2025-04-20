@@ -6,10 +6,9 @@ from typing import Type
 
 
 class Tensor:
-
     def __init__(
         self,
-        data: np.ndarray,
+        data: np.ndarray | float | int | list | tuple,
         requires_grad=False,
         store_grad_non_leaf=False,
     ):
@@ -22,7 +21,7 @@ class Tensor:
         self.store_grad_non_leaf = store_grad_non_leaf
         self.grad = None
         self.creator: BaseOp | None = None
-        self.parents: tuple[Tensor] | None = None
+        self.parents: tuple[Tensor, ...] | None = None
 
     def __repr__(self) -> str:
         return f"Tensor({self.buffer}, shape = {self.buffer.shape}, requires_grad = {self.requires_grad})"

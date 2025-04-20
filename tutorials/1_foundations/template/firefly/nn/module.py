@@ -1,11 +1,11 @@
+# type: ignore
 from __future__ import annotations
 from firefly.nn.parameter import Parameter
 
 
 class Module:
-
     _parameters: (
-        dict[str, Parameter | list[Parameter], tuple[Parameter, ...]] | None
+        dict[str, Parameter | list[Parameter] | tuple[Parameter, ...]] | None
     ) = None
     _modules: dict[str, Module | list[Module] | tuple[Module, ...]] | None = None
 
@@ -28,7 +28,6 @@ class Module:
     def get_parameters(self, discard_non_trainable: bool = True) -> list[Parameter]:
         # TODO
         raise NotImplementedError("This method needs to be implemented.")
-    
 
     ### The following methods are optional and are not further used in the tutorial ###
 

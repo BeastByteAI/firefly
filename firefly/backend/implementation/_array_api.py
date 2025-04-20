@@ -4,8 +4,7 @@ from firefly.backend.base import BaseBackend, BaseBuffer
 
 
 class ArrayApiBackend(BaseBackend):
-
-    buffer: BaseBuffer
+    buffer: type[BaseBuffer]
     np: ModuleType
 
     @classmethod

@@ -1,9 +1,9 @@
-from firefly.backend.base import BaseBuffer
+from firefly.backend.base import BaseBuffer, BaseBackend
 from firefly.backend.implementation.numpy import NumpyBackend
 from firefly.backend.implementation.cupy import CupyBackend, is_cupy_available
 import numpy as np
 
-backends = {
+backends: dict[str, type[BaseBackend]] = {
     "numpy": NumpyBackend,
     "cpu": NumpyBackend,
 }
@@ -15,7 +15,6 @@ if is_cupy_available:
 
 
 class BackendDispatcher:
-
     @staticmethod
     def _check_device(a: BaseBuffer, b: BaseBuffer):
         if not a.is_same_device(b):
@@ -36,12 +35,12 @@ class BackendDispatcher:
     @staticmethod
     def _make_buffer(data: int | float | list | tuple, base: BaseBuffer) -> BaseBuffer:
         if isinstance(data, int):
-            data = np.asarray([data])
+            buff = np.asarray([data])
         elif isinstance(data, float):
-            data = np.asarray([data]).astype(np.float32)
+            buff = np.asarray([data]).astype(np.float32)
         elif isinstance(data, (list, tuple)):
-            data = np.asarray(data)
-        return base.__class__(data, device=base.device)
+            buff = np.asarray(data)
+        return base.__class__(buff, device=base.device)
 
     @staticmethod
     def _promote_to_buffers(a, b) -> tuple[BaseBuffer, BaseBuffer]:
@@ -74,6 +73,7 @@ class BackendDispatcher:
         backend = backends[a.backend]
         return backend.matmul(a, b)
 
+    @staticmethod
     def add(a: BaseBuffer | float | int, b: BaseBuffer | float | int):
         a, b = BackendDispatcher._promote_to_buffers(a, b)
         BackendDispatcher._check_device(a, b)

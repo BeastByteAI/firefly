@@ -1,3 +1,4 @@
+# type: ignore
 from __future__ import annotations
 
 try:
@@ -12,7 +13,6 @@ is_cupy_available = cp is not None
 
 
 class CupyBuffer(BaseBuffer):
-
     default_device = "0"  # for now we do not support multi-gpu
     backend = "cupy"
     native_type = cp.ndarray if cp else None

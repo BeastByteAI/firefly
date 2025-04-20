@@ -9,7 +9,7 @@ class Add(DiffOp):
         self.buffers = buffers
         return D.add(buffers[0], buffers[1])
 
-    def backward(self, grad: BaseBuffer) -> BaseBuffer:
+    def backward(self, grad: BaseBuffer) -> tuple[BaseBuffer, ...]:
         grad_a = self.maybe_debroadcast_grad(grad, self.buffers[0])
         grad_b = self.maybe_debroadcast_grad(grad, self.buffers[1])
         return (grad_a, grad_b)

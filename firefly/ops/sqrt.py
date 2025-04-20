@@ -9,5 +9,5 @@ class Sqrt(DiffOp):
         self.input = buffers[0]
         return D.sqrt(self.input)
 
-    def backward(self, grad: BaseBuffer) -> tuple[BaseBuffer, BaseBuffer]:
+    def backward(self, grad: BaseBuffer) -> tuple[BaseBuffer, ...]:
         return (D.mul(grad, D.div(0.5, D.sqrt(self.input))),)

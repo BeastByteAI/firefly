@@ -49,4 +49,4 @@ for epoch in range(epochs):
     loss = loss_fn(outputs, y)
     loss.backward()
     optimizer.step()
-    print(f"Epoch [{epoch+1}/{epochs}], Loss: {loss.to_numpy()}")
+    print(f"Epoch [{epoch + 1}/{epochs}], Loss: {loss.to_numpy()}")

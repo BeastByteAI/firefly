@@ -11,7 +11,7 @@ class Transpose(DiffOp):
         self.axes = axes
         return D.transpose(buffer, axes=axes)
 
-    def backward(self, grad: BaseBuffer) -> BaseBuffer:
+    def backward(self, grad: BaseBuffer) -> tuple[BaseBuffer, ...]:
         if self.axes is None:
             axes = None
         else:

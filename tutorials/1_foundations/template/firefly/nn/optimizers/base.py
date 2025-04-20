@@ -2,7 +2,6 @@ from firefly.nn.parameter import Parameter
 
 
 class BaseOptimizer:
-
     def __init__(self, parameters: list[Parameter]):
         self.parameters = parameters
 

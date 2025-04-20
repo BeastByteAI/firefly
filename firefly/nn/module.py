@@ -1,3 +1,4 @@
+# type: ignore
 from __future__ import annotations
 from typing import Any
 from firefly.nn.parameter import Parameter
@@ -5,9 +6,8 @@ from warnings import warn
 
 
 class Module:
-
     _parameters: (
-        dict[str, Parameter | list[Parameter], tuple[Parameter, ...]] | None
+        dict[str, Parameter | list[Parameter] | tuple[Parameter, ...]] | None
     ) = None
     _modules: dict[str, Module | list[Module] | tuple[Module, ...]] | None = None
 

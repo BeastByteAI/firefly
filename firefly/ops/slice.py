@@ -22,8 +22,7 @@ class Slice(DiffOp):
 
         return D.slice(self.buffer, starts=self.full_starts, ends=self.full_ends)
 
-    def backward(self, grad: BaseBuffer) -> BaseBuffer:
-
+    def backward(self, grad: BaseBuffer) -> tuple[BaseBuffer, ...]:
         input_shape = self.buffer.shape()
         pads = []
 
